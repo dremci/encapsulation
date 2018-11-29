@@ -1,0 +1,43 @@
+<!--封装好的原生ajax-->
+<!--<script>
+     const Json=function(method,url,type,data){
+       let pro= new Promise( function(resolve,reject){
+            const xml= new XMLHttpRequest();
+            xml.open( method,url );
+            xml.responseType=type;
+            xml.setRequestHeader( 'Accept',"application/json" );
+            xml.onreadystatechange=function(){
+            	if(this.status===200&&this.readyState===4){
+            		resolve( this.response);
+            	}
+            }
+            xml.send(data);
+        })
+       return pro;
+    }
+    Json("get","json.json","json").then( (js) => {
+        console.log(js);
+    },(erro)=>{
+    	console.log(erro)
+    })
+</script>-->
+
+<!--原生ajax封装-->
+<script type="text/javascript">
+	     const Json=function(method,url,type,data,success){
+            const xml= new XMLHttpRequest();
+            xml.open( method,url );
+            let dat = data;
+            xml.responseType=type;
+            xml.setRequestHeader( 'Accept',"application/json" );
+            xml.onreadystatechange=function(){
+            	if(this.status===200&&this.readyState===4){
+            		var res = xml.response;
+            		success(xml.response);
+            	}
+            }
+            xml.send(dat);
+    }Json("get","http://apis.juhe.cn/lottery/types?key=90e545b710c10f6d7dd5b77006a2f1df","json","",function(res){
+    	console.log(res)
+    })
+</script>
